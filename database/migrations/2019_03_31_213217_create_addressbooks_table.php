@@ -17,7 +17,7 @@ class CreateAddressbooksTable extends Migration
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->integer('phone');
+            $table->string('phone'); //string used for international numbers compatibility 
             $table->string('email');
             $table->timestamps();
         });
