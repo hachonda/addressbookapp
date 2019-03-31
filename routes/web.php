@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/{link}', function () {
     return redirect('/');
 })->where('link', '[A-Za-z]+');
+
+Route::resource('addressbook', 'AddressbookController');
