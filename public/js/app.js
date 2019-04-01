@@ -47421,9 +47421,20 @@ var Add = __webpack_require__(64);
   data: function data() {
     return {
 
-      addActive: ""
+      addActive: "",
+      lists: {},
+      errors: {}
 
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.post('/fetchdata/', this.$data.list).then(function (response) {
+      return _this.lists = response.data;
+    }).catch(function (error) {
+      return _this.errors = error.response.data.errors;
+    });
   },
 
   methods: {
@@ -47448,24 +47459,41 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("nav", { staticClass: "panel column is-offset-2 is-8" }, [
-        _c("p", { staticClass: "panel-heading" }, [
-          _vm._v("\n      Address Book\n\n      "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "button is-link is-small is-outlined is-pulled-right",
-              on: { click: _vm.openAdd }
-            },
-            [_vm._v("\n        Add New\n      ")]
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1)
-      ]),
+      _c(
+        "nav",
+        { staticClass: "panel column is-offset-2 is-8" },
+        [
+          _c("p", { staticClass: "panel-heading" }, [
+            _vm._v("\n      Address Book\n\n      "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "button is-link is-small is-outlined is-pulled-right",
+                on: { click: _vm.openAdd }
+              },
+              [_vm._v("\n        Add New\n      ")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.lists, function(item, key) {
+            return _c("a", { staticClass: "panel-block" }, [
+              _c("span", { staticClass: "column is-9" }, [
+                _vm._v("\n      " + _vm._s(item.firstname) + "\n      ")
+              ]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true)
+            ])
+          })
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("Add", {
         attrs: { openmodal: _vm.addActive },
@@ -47503,31 +47531,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "panel-block" }, [
-      _c("span", { staticClass: "column is-9" }, [
-        _vm._v("\n      marksheet\n      ")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "panel-icon column is-1" }, [
-        _c("i", {
-          staticClass: "fa fa-trash has-text-danger",
-          attrs: { title: "Delete" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "panel-icon column is-1" }, [
-        _c("i", {
-          staticClass: "fa fa-edit has-text-info",
-          attrs: { title: "Edit" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "panel-icon column is-1" }, [
-        _c("i", {
-          staticClass: "fa fa-eye has-text-primary",
-          attrs: { title: "View" }
-        })
-      ])
+    return _c("span", { staticClass: "panel-icon column is-1" }, [
+      _c("i", {
+        staticClass: "fa fa-trash has-text-danger",
+        attrs: { title: "Delete" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "panel-icon column is-1" }, [
+      _c("i", {
+        staticClass: "fa fa-edit has-text-info",
+        attrs: { title: "Edit" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "panel-icon column is-1" }, [
+      _c("i", {
+        staticClass: "fa fa-eye has-text-primary",
+        attrs: { title: "View" }
+      })
     ])
   }
 ]
@@ -47750,6 +47780,7 @@ var render = function() {
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.firstname },
               attrs: { type: "text", placeholder: "First Name" },
               domProps: { value: _vm.list.firstname },
               on: {
@@ -47761,7 +47792,13 @@ var render = function() {
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.firstname
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.firstname[0]))
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -47778,6 +47815,7 @@ var render = function() {
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.lastname },
               attrs: { type: "text", placeholder: "Last Name" },
               domProps: { value: _vm.list.lastname },
               on: {
@@ -47789,7 +47827,13 @@ var render = function() {
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.lastname
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.lastname[0]))
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -47806,6 +47850,7 @@ var render = function() {
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.phone },
               attrs: { type: "number", placeholder: "Phone Number" },
               domProps: { value: _vm.list.phone },
               on: {
@@ -47817,7 +47862,13 @@ var render = function() {
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.phone
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.phone[0]))
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -47834,6 +47885,7 @@ var render = function() {
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.firstname },
               attrs: { type: "email", placeholder: "Email Address" },
               domProps: { value: _vm.list.email },
               on: {
@@ -47845,7 +47897,13 @@ var render = function() {
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.email
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.email[0]))
+              ])
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),
@@ -47929,6 +47987,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47942,8 +48004,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         lastname: "",
         phone: "",
         email: ""
-
-      }
+      },
+      errors: {}
 
     };
   },
@@ -47954,11 +48016,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('closeRequest');
     },
     saveContact: function saveContact() {
+      var _this = this;
 
       axios.post('/addressbook/', this.$data.list).then(function (response) {
         return console.log(response);
       }).catch(function (error) {
-        return console.log(error);
+        return _this.errors = error.response.data.errors;
       });
     }
   }

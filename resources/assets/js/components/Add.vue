@@ -12,29 +12,33 @@
         <div class="field">
           <label class="label">First Name</label>
           <div class="control">
-            <input class="input" type="text" placeholder="First Name" v-model="list.firstname">
+            <input class="input" :class="{'is-danger':errors.firstname}" type="text" placeholder="First Name" v-model="list.firstname">
           </div>
+          <small v-if="errors.firstname" class="has-text-danger">{{ errors.firstname[0]}}</small>
         </div>
 
         <div class="field">
           <label class="label">Last Name</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Last Name" v-model="list.lastname">
+            <input class="input" :class="{'is-danger':errors.lastname}" type="text" placeholder="Last Name" v-model="list.lastname">
           </div>
+          <small v-if="errors.lastname" class="has-text-danger">{{ errors.lastname[0]}}</small>
         </div>
 
         <div class="field">
           <label class="label">Phone Number</label>
           <div class="control">
-            <input class="input" type="number" placeholder="Phone Number" v-model="list.phone">
+            <input class="input" :class="{'is-danger':errors.phone}" type="number" placeholder="Phone Number" v-model="list.phone">
           </div>
+          <small v-if="errors.phone" class="has-text-danger">{{ errors.phone[0]}}</small>
         </div>
 
         <div class="field">
           <label class="label">Email Address</label>
           <div class="control">
-            <input class="input" type="email" placeholder="Email Address" v-model="list.email">
+            <input class="input" :class="{'is-danger':errors.firstname}" type="email" placeholder="Email Address" v-model="list.email">
           </div>
+          <small v-if="errors.email" class="has-text-danger">{{ errors.email[0]}}</small>
         </div>
 
         <!-- Content ... -->
@@ -61,6 +65,8 @@
               lastname: "",
               phone:"",
               email: "",
+            },
+            errors:{
 
             }
 
@@ -75,7 +81,7 @@
 
             axios.post('/addressbook/', this.$data.list)
             .then((response) => console.log(response))
-            .catch((error)=> console.log(error))
+            .catch((error)=> this.errors = error.response.data.errors)
 
             }
         }

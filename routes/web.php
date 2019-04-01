@@ -20,3 +20,5 @@ Route::get('/{link}', function () {
 })->where('link', '[A-Za-z]+');
 
 Route::resource('addressbook', 'AddressbookController');
+
+Route::post('fetchdata', 'AddressbookController@fetchdata');

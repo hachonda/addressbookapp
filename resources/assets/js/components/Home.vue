@@ -18,10 +18,10 @@
         </div>
 
 
-      <a class="panel-block">
+      <a class="panel-block" v-for="item,key in lists">
 
         <span class="column is-9">
-        marksheet
+        {{item.firstname}}
         </span>
 
         <span class="panel-icon column is-1">
@@ -55,9 +55,16 @@
       data(){
         return {
 
-          addActive: ""
+          addActive: "",
+          lists:{},
+          errors: {},
 
         }
+      },
+      mounted(){
+        axios.post('/fetchdata/', this.$data.list)
+            .then((response) => this.lists = response.data)
+            .catch((error)=> this.errors = error.response.data.errors)
       },
       methods: {
         openAdd(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Addressbook;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddressbookRequest;
 
 class AddressbookController extends Controller
 {
@@ -15,6 +16,11 @@ class AddressbookController extends Controller
     public function index()
     {
         //
+    }
+
+    public function fetchdata()
+    {
+        return AddressBook::orderBy('firstname', 'ASC')->get();
     }
 
     /**
@@ -33,7 +39,7 @@ class AddressbookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressbookRequest $request)
     {
         //return $request->all();
 
