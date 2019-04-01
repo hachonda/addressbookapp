@@ -20,7 +20,7 @@ class AddressbookController extends Controller
 
     public function fetchdata()
     {
-        return AddressBook::orderBy('firstname', 'ASC')->get();
+        return AddressBook::orderBy("firstname", "ASC")->get();
     }
 
     /**
@@ -82,7 +82,14 @@ class AddressbookController extends Controller
      */
     public function update(Request $request, Addressbook $addressbook)
     {
-        //
+        //return $request->all();
+
+        $ab = Addressbook::find($request->id);
+        $ab->firstname = $request->firstname;
+        $ab->lastname = $request->lastname;
+        $ab->phone = $request->phone;
+        $ab->email = $request->email;
+        $ab->save();
     }
 
     /**
@@ -93,6 +100,6 @@ class AddressbookController extends Controller
      */
     public function destroy(Addressbook $addressbook)
     {
-        //
+        Addressbook::where("id", $addressbook->id)->delete();
     }
 }
