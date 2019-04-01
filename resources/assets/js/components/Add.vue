@@ -92,7 +92,7 @@
           })
           
           /** empty list when adding new contact*/
-					this.list = ""
+					this.list = "";
 				})
 				  .catch((error) => this.errors = error.response.data.errors)
 			}

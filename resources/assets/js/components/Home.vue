@@ -10,14 +10,14 @@
       </p>
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input is-small" type="text" placeholder="search by name, email or number">
+          <input v-model="searchQuery" class="input is-small" type="text" placeholder="search by name, email or number">
           <span class="icon is-small is-left">
             <i class="fa fa-search" aria-hidden="true"></i>
           </span>
         </p>
       </div>
 
-      <a class="panel-block" v-for="item, key in lists">
+      <a class="panel-block" v-for="item, key in templist">
         <span class="column is-9">{{item.firstname}}</span>
 
         <span class="panel-icon column is-1">
@@ -54,14 +54,33 @@ export default {
       addActive: "",
       showActive: "",
       updateActive: "",
+      searchQuery:"",
+      templist: "",
       lists: {},
       errors: {}
     };
   },
+  watch:{
+			searchQuery(){
+        //console.log(this.searchQuery);
+				if (this.searchQuery.length > 0) {
+					this.templist = this.lists.filter((item) => {
+						return Object.keys(item).some((key)=>{
+							let string = String(item[key]) 
+							return string.toLowerCase().indexOf(this.searchQuery.toLowerCase())>-1
+							 
+						})
+					});
+					
+				}else{
+					this.templist = this.lists
+				}
+			}
+	},
   mounted() {
     axios
       .post("/fetchdata/", this.$data.list)
-      .then(response => (this.lists = response.data))
+      .then(response => (this.lists = this.templist = response.data))
       .catch(error => (this.errors = error.response.data.errors));
   },
   methods: {
