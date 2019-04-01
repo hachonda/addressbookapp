@@ -47464,13 +47464,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         /** empty list when adding new contact*/
-        //this.list = "";
-        _this.list = {
-          firstname: "",
+        _this.list = "";
+        /**
+         * this.list = {
+          firstname:"",
           lastname: "",
           phone: "",
-          email: ""
+          email:"",
         };
+        **/
       }).catch(function (error) {
         return _this.errors = error.response.data.errors;
       });
