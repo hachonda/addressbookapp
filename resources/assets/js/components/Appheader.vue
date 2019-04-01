@@ -31,7 +31,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Header Component mounted.')
+            //console.log('Header Component mounted.')
         }
     }
 </script>

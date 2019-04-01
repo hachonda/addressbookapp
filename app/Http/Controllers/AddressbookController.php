@@ -49,6 +49,8 @@ class AddressbookController extends Controller
         $ab->phone = $request->phone;
         $ab->email = $request->email;
         $ab->save();
+
+        return $ab;
     }
 
     /**

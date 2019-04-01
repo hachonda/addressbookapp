@@ -78,12 +78,24 @@
                 this.$emit('closeRequest')
             },
             saveContact(){
-
-            axios.post('/addressbook/', this.$data.list)
-            .then((response) => this.closemodal())
-            .catch((error)=> this.errors = error.response.data.errors)
-
-            }
-        }
+				axios.post('/addressbook',this.$data.list).then((response)=> {
+					this.closemodal()
+          this.$parent.lists.push(response.data)
+          
+          /** sorting bug fix */
+					this.$parent.lists.sort(function(a,b){
+						if (a.firstname > b.firstname) {
+							return 1;
+						}else if(a.firstname < b.firstname){
+							return -1;
+						}
+          })
+          
+          /** empty list when adding new contact*/
+					this.list = ""
+				})
+				  .catch((error) => this.errors = error.response.data.errors)
+			}
+		}
     }
 </script>

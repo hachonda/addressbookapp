@@ -30,7 +30,6 @@ const app = new Vue({
     router,
     components: {Appheader, Appfooter, Add},
     created(){
-
-        console.log('hello world')
+      //
     }
 });

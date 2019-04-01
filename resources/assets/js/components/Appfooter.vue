@@ -12,7 +12,7 @@
 <script>
     export default {
         mounted() {
-            console.log('Footer Component mounted.')
+            //console.log('Footer Component mounted.')
         }
     }
 </script>

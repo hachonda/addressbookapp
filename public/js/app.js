@@ -1118,18 +1118,17 @@ var About = __webpack_require__(50);
 var routes = [{ path: '/home', component: Home }, { path: '/about', component: About }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    //mode: 'history', 
-    routes: routes
+  //mode: 'history', 
+  routes: routes
 });
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#app',
-    router: router,
-    components: { Appheader: Appheader, Appfooter: Appfooter, Add: Add },
-    created: function created() {
-
-        console.log('hello world');
-    }
+  el: '#app',
+  router: router,
+  components: { Appheader: Appheader, Appfooter: Appfooter, Add: Add },
+  created: function created() {
+    //
+  }
 });
 
 /***/ }),
@@ -47105,7 +47104,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        console.log('Header Component mounted.');
+        //console.log('Header Component mounted.')
     }
 });
 
@@ -47261,7 +47260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        console.log('Footer Component mounted.');
+        //console.log('Footer Component mounted.')
     }
 });
 
@@ -47606,7 +47605,7 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(51)
+var __vue_script__ = null
 /* template */
 var __vue_template__ = __webpack_require__(52)
 /* template functional */
@@ -47647,32 +47646,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Home Component mounted.');
-    }
-});
-
-/***/ }),
+/* 51 */,
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48049,8 +48023,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     saveContact: function saveContact() {
       var _this = this;
 
-      axios.post('/addressbook/', this.$data.list).then(function (response) {
-        return _this.closemodal();
+      axios.post('/addressbook', this.$data.list).then(function (response) {
+        _this.closemodal();
+        _this.$parent.lists.push(response.data);
+
+        /** sorting bug fix */
+        _this.$parent.lists.sort(function (a, b) {
+          if (a.firstname > b.firstname) {
+            return 1;
+          } else if (a.firstname < b.firstname) {
+            return -1;
+          }
+        });
+
+        /** empty list when adding new contact*/
+        _this.list = "";
       }).catch(function (error) {
         return _this.errors = error.response.data.errors;
       });
