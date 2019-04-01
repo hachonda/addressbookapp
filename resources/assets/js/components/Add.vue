@@ -92,7 +92,15 @@
           })
           
           /** empty list when adding new contact*/
-					this.list = "";
+          //this.list = "";
+          this.list = {
+            firstname:"",
+            lastname: "",
+            phone: "",
+            email:"",
+          };
+          
+          
 				})
 				  .catch((error) => this.errors = error.response.data.errors)
 			}
