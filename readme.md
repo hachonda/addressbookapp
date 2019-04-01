@@ -4,18 +4,18 @@
 This is a simple Addressbook App with the following features:
 
 <ul>
-<li>A user is able to see a list of contacts
-<li>A user is able to search their contacts
-<li>A user is able to create a new contact
-<li>A user is be able to update an existing contact
-<li>A user is be able to delete a contact
-<li>A contact consists of a first name, last name, contact number and email address
+<li>A user is able to see a list of contacts</li>
+<li>A user is able to search their contacts</li>
+<li>A user is able to create a new contact</li>
+<li>A user is be able to update an existing contact</li>
+<li>A user is be able to delete a contact</li>
+<li>A contact consists of a first name, last name, contact number and email address</li>
 </ul>
 
 ##Technologies used
 
 <ul>
-<li>PHP (Laravel Framework)
+<li>PHP (Laravel Framework)</li>
 <li>MySql</li>
 <li>Vue Js</li>
 <li>Bulma CSS</li>
