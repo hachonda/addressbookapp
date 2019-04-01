@@ -12,20 +12,20 @@ This is a simple Addressbook App with the following features:
 <li>A contact consists of a first name, last name, contact number and email address
 </ul>
 
-#Technologies used
+##Technologies used
 
 <ul>
 <li>PHP (Laravel Framework)
-<li>MySql
-<li>Vue Js
-<li>Bulma CSS 
+<li>MySql</li>
+<li>Vue Js</li>
+<li>Bulma CSS</li>
 </ul>
 
-# Future Feature Updates
+## Future Feature Updates
 
 I would like to include the ability for a single contact to have unlimited email addresses and phone numbers. 
 
 
 ## License
 
-The AddressBook App is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This AddressBook App is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
