@@ -47464,7 +47464,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         /** empty list when adding new contact*/
-        _this.list = "";
+        //this.list = "";
+        _this.list = {
+          firstname: "",
+          lastname: "",
+          phone: "",
+          email: ""
+        };
       }).catch(function (error) {
         return _this.errors = error.response.data.errors;
       });
@@ -48607,12 +48613,82 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "section" }, [
       _c("div", { staticClass: "container" }, [
-        _c("h1", { staticClass: "title" }, [_vm._v("Section")]),
+        _c("h1", { staticClass: "title" }, [
+          _vm._v("About This Addressbook App")
+        ]),
         _vm._v(" "),
         _c("h2", { staticClass: "subtitle" }, [
-          _vm._v("\n      A simple container to divide your page into "),
-          _c("strong", [_vm._v("sections")]),
-          _vm._v(", like the one you're currently reading\n    ")
+          _vm._v(
+            "\n        This is a simple Addressbook App with the following features:\n      "
+          )
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _c("ul", [
+            _c("li", [_vm._v("A user is able to see a list of contacts")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("A user is able to search their contacts")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("A user is able to create a new contact")]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v("A user is be able to update an existing contact")
+            ]),
+            _vm._v(" "),
+            _c("li", [_vm._v("A user is be able to delete a contact")]),
+            _vm._v(" "),
+            _c("li", [
+              _vm._v(
+                "A contact consists of a first name, last name, contact number and email address"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h2", { staticClass: "subtitle" }, [_vm._v("Technologies used:")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _c("ul", [
+            _c("li", [_vm._v("PHP (Laravel Framework)")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("MySql")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Vue Js")]),
+            _vm._v(" "),
+            _c("li", [_vm._v("Bulma CSS")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h2", { staticClass: "subtitle" }, [
+          _vm._v("Future Feature Updates:")
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\nI would like to include the ability for a single contact to have unlimited email addresses and phone numbers. \n"
+          )
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h2", { staticClass: "subtitle" }, [_vm._v("License:")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\nThis AddressBook App is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).\n"
+          )
         ])
       ])
     ])
