@@ -12,7 +12,7 @@ This is a simple Addressbook App with the following features:
 <li>A contact consists of a first name, last name, contact number and email address</li>
 </ul>
 
-##Technologies used
+## Technologies used
 
 <ul>
 <li>PHP (Laravel Framework)</li>
